@@ -16,7 +16,6 @@ import ru.mrbrikster.baseplugin.config.Configuration;
 import ru.mrbrikster.baseplugin.config.ConfigurationNode;
 import ru.mrbrikster.chatty.Chatty;
 import ru.mrbrikster.chatty.api.events.ChattyMessageEvent;
-import ru.mrbrikster.chatty.bungee.BungeeBroadcaster;
 import ru.mrbrikster.chatty.dependencies.DependencyManager;
 import ru.mrbrikster.chatty.dependencies.PlayerTagManager;
 import ru.mrbrikster.chatty.dependencies.VaultHook;
@@ -182,12 +181,6 @@ public class ChatListener implements Listener, EventExecutor {
 
         if (!event.isCancelled()) {
             pendingMessages.put(player, chat);
-
-            if (!json) {
-                if (configuration.getNode("general.bungeecord").getAsBoolean(false) && chat.getRange() <= -3) {
-                    BungeeBroadcaster.broadcast(event.getPlayer(), chat.getName(), String.format(event.getFormat(), player.getName(), message), false);
-                }
-            }
         }
 
         pendingSpyMessages.put(player, Pair.of(chat, new ArrayList<>(event.getRecipients())));
@@ -366,10 +359,6 @@ public class ChatListener implements Listener, EventExecutor {
             applyMentions(event, formattedMessage);
         } else {
             formattedMessage.replace("{message}", new LegacyMessagePart(event.getMessage(), false));
-        }
-
-        if (configuration.getNode("general.bungeecord").getAsBoolean(false)) {
-            BungeeBroadcaster.broadcast(event.getPlayer(), chat.getName(), formattedMessage.toJSONString(), true);
         }
 
         if (configuration.getNode("json.swears.enable").getAsBoolean(false)) {

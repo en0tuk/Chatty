@@ -27,13 +27,8 @@ PaperSpigot e t.c. This plugin doesn't have any non-switchable options. It's sim
     chatty.spy.<chat> or chatty.spy - allows to see all messages from chat-modes.
     chatty.command.spy - allows to use "/spy" command for enabling/disabling spy-mode.
     chatty.command.reload - allows to use "/chatty" command for reloading configuration.
-    chatty.command.msg - allows to use "/msg" command.
-    chatty.command.reply - allows to use "/reply" command.
     chatty.style.<style> or chatty.style.<style>.<chat> - allows to use styles in chat
         (styles: colors, bold, magic, reset, italic, underline, strikethrough).
-    chatty.notification.chat.<list> - allows to see messages from Chat notification list.
-    chatty.notification.advancements.<list> - allows to see messages from Advancements notification list.
-    chatty.notification.actionbar - allows to see messages from ActionBar notification.
     chatty.moderation.advertisement - bypass advertisement moderation.
     chatty.moderation.caps - bypass caps moderation.
     chatty.cooldown or chatty.cooldown.<chat-mode> - allows to bypass cooldown of chat.
@@ -46,13 +41,10 @@ PaperSpigot e t.c. This plugin doesn't have any non-switchable options. It's sim
 | Advertisement protection                 | +      | +      |
 | PlaceholderAPI support                   | +      | +      |
 | Old versions support (1.5.2+)            | -      | +      |
-| BungeeCord support                       | -      | +      |
 | Replacement of AutoMessage               | -      | +      |
-| Advancements and ActionBar notifications | -      | +      |
 | Custom chat groups                       | -      | +      |
 | Cooldowns                                | -      | +      |
 | Built-in spy-mode                        | -      | +      |
-| Private messages                         | -      | +      |
 | New 1.16+ hex color codes                | -      | +      |
 
 ## Hex color codes and gradient

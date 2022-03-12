@@ -15,24 +15,6 @@ messages:
     clear-chat-for-all: '&a{player} очистил чат.'
     clear-chat-for-yourself: '&aЧат очищен.'
 
-  msg-command:
-    usage: '&cИспользование: /{label} <игрок> <сообщение>'
-    player-not-found: '&cИгрок не найден.'
-    cannot-message-yourself: '&cВы не можете написать самому себе.'
-
-  reply-command:
-    usage: '&cИспользование: /{label} <сообщение>'
-    target-not-found: '&cИгрок, которому можно отправить сообщение, не найден.'
-
-  ignore-command:
-    usage: '&cИспользование: /{label} <игрок>'
-    player-not-found: '&cИгрок не найден.'
-    ignore-list: '&eСейчас вы игнорируете: &6{players}.'
-    ignore-list-delimiter: '&8, &6'
-    add-ignore: '&cТеперь вы игнорируете игрока {player}.'
-    remove-ignore: '&aВы больше не игнорируете игрока {player}.'
-    cannot-ignore-yourself: '&cВы не можете игнорировать самого себя.'
-
   swears-command:
     usage: '&cИспользование: /{label} add <слово>'
     add-word: '&aВы добавили слово {word} в белый список.'

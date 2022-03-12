@@ -4,9 +4,6 @@ import ru.mrbrikster.baseplugin.config.Configuration;
 import ru.mrbrikster.chatty.Chatty;
 import ru.mrbrikster.chatty.chat.ChatManager;
 import ru.mrbrikster.chatty.chat.JsonStorage;
-import ru.mrbrikster.chatty.commands.pm.IgnoreCommand;
-import ru.mrbrikster.chatty.commands.pm.MsgCommand;
-import ru.mrbrikster.chatty.commands.pm.ReplyCommand;
 import ru.mrbrikster.chatty.dependencies.DependencyManager;
 import ru.mrbrikster.chatty.moderation.ModerationManager;
 
@@ -21,9 +18,6 @@ public class CommandManager {
     private ChattyCommand chattyCommand;
     private ClearChatCommand clearChatCommand;
     private SpyCommand spyCommand;
-    private IgnoreCommand ignoreCommand;
-    private MsgCommand msgCommand;
-    private ReplyCommand replyCommand;
     private SwearsCommand swearsCommand;
     private ChatCommand chatCommand;
     private PrefixCommand prefixCommand;
@@ -58,21 +52,6 @@ public class CommandManager {
             this.spyCommand.register(Chatty.instance());
         }
 
-        if (configuration.getNode("pm.commands.msg.enable").getAsBoolean(false)) {
-            this.msgCommand = new MsgCommand(Chatty.instance());
-            this.msgCommand.register(Chatty.instance());
-        }
-
-        if (configuration.getNode("pm.commands.reply.enable").getAsBoolean(false)) {
-            this.replyCommand = new ReplyCommand(Chatty.instance());
-            this.replyCommand.register(Chatty.instance());
-        }
-
-        if (configuration.getNode("pm.commands.ignore.enable").getAsBoolean(false)) {
-            this.ignoreCommand = new IgnoreCommand(configuration, jsonStorage);
-            this.ignoreCommand.register(Chatty.instance());
-        }
-
         if (configuration.getNode("moderation.swear.enable").getAsBoolean(false)) {
             this.swearsCommand = new SwearsCommand();
             this.swearsCommand.register(Chatty.instance());
@@ -103,18 +82,6 @@ public class CommandManager {
 
         if (spyCommand != null) {
             this.spyCommand.unregister(Chatty.instance());
-        }
-
-        if (msgCommand != null) {
-            this.msgCommand.unregister(Chatty.instance());
-        }
-
-        if (ignoreCommand != null) {
-            this.ignoreCommand.unregister(Chatty.instance());
-        }
-
-        if (replyCommand != null) {
-            this.replyCommand.unregister(Chatty.instance());
         }
 
         if (swearsCommand != null) {

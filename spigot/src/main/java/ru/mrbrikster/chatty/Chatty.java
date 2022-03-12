@@ -10,7 +10,6 @@ import ru.mrbrikster.baseplugin.plugin.BukkitBasePlugin;
 import ru.mrbrikster.chatty.api.ChattyApi;
 import ru.mrbrikster.chatty.api.ChattyApi.ChattyApiHolder;
 import ru.mrbrikster.chatty.api.ChattyApiImplementation;
-import ru.mrbrikster.chatty.bungee.BungeeCordListener;
 import ru.mrbrikster.chatty.chat.Chat;
 import ru.mrbrikster.chatty.chat.ChatListener;
 import ru.mrbrikster.chatty.chat.ChatManager;
@@ -20,7 +19,6 @@ import ru.mrbrikster.chatty.dependencies.DependencyManager;
 import ru.mrbrikster.chatty.dependencies.PlayerTagManager;
 import ru.mrbrikster.chatty.miscellaneous.MiscellaneousListener;
 import ru.mrbrikster.chatty.moderation.ModerationManager;
-import ru.mrbrikster.chatty.notifications.NotificationManager;
 import ru.mrbrikster.chatty.util.Debugger;
 import ru.mrbrikster.chatty.util.Messages;
 
@@ -113,7 +111,6 @@ public final class Chatty extends BukkitBasePlugin {
         });
 
         register(CommandManager.class, new CommandManager(this));
-        register(NotificationManager.class, new NotificationManager(this));
 
         EventPriority eventPriority;
         try {
@@ -133,11 +130,6 @@ public final class Chatty extends BukkitBasePlugin {
         this.getServer().getPluginManager().registerEvent(AsyncPlayerChatEvent.class, chatListener, eventPriority, chatListener, Chatty.instance, true);
 
         this.getServer().getPluginManager().registerEvents(new MiscellaneousListener(this), this);
-
-        if (configuration.getNode("general.bungeecord").getAsBoolean(false)) {
-            this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
-            this.getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", new BungeeCordListener(getExact(ChatManager.class)));
-        }
 
         Chatty.api = new ChattyApiImplementation(getExact(ChatManager.class).getChats().stream().filter(Chat::isEnable).collect(Collectors.toSet()));
         ChattyApiHolder.setApi(api);
@@ -204,9 +196,6 @@ public final class Chatty extends BukkitBasePlugin {
 
             metrics.addCustomChart(new SimplePie("uuid",
                     () -> String.valueOf(configuration.getNode("general.uuid").getAsBoolean(false))));
-
-            metrics.addCustomChart(new SimplePie("bungeecord",
-                    () -> String.valueOf(configuration.getNode("general.bungeecord").getAsBoolean(false))));
 
             metrics.addCustomChart(new SimplePie("debug",
                     () -> String.valueOf(configuration.getNode("general.debug").getAsBoolean(false))));

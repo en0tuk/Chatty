@@ -38,7 +38,6 @@ public interface Chat {
 
     /**
      * Range param for the chat messages
-     * -3 is used for multi-server messaging (when "general.bungeecord" is true)
      * -2 is used for cross-world chats
      * -1 is for global single-world chats
      * 0 and higher for ranged local-chats
